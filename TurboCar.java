@@ -24,4 +24,8 @@ public abstract class TurboCar extends Car{
         if(turboOn) turbo = turboValue;
         return getEnginePower() * 0.01 * turbo;
     }
+
+    protected boolean isMovable(){
+        return true;
+    }
 }

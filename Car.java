@@ -62,11 +62,15 @@ public void stopEngine(){
 }
 
 public void gas(double amount){
-    if (amount > 0 && amount <= 1){
-        incrementSpeed(amount);
-    }
-    else{
-        System.out.println("Fel gas värde, värdet ska ligga mellan 0 och 1.");
+    if (isMovable()){
+
+        if (amount > 0 && amount <= 1){
+            incrementSpeed(amount);
+        }
+        else{
+          System.out.println("Fel gas värde, värdet ska ligga mellan 0 och 1.");
+        }
+
     }
 }
 
@@ -80,15 +84,16 @@ public void brake(double amount){
     }
 }
 
-private void incrementSpeed(double amount){
+protected void incrementSpeed(double amount){
     currentSpeed = Math.min(currentSpeed + speedFactor() * amount, enginePower);
 }
 
-private void decrementSpeed(double amount){
+protected void decrementSpeed(double amount){
     currentSpeed = Math.max(currentSpeed - speedFactor() * amount,0);
 }
 
 protected abstract double speedFactor();
+protected abstract boolean isMovable();
 
 
 public void setX(double new_x){

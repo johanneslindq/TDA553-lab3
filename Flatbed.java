@@ -1,33 +1,32 @@
-public class Flatbed extends Truck{
-    private int platformPosition;
+import java.awt.*;
 
-    
-    protected void raisePlatform() {
-       if (getCurrentSpeed() == 0){
-            switch (platformPosition){
-                case 0:
-                platformPosition = 1;
-                break;
-                case 1:
-                platformPosition = 0;
-                break;
-            }
-       }
-       else{
-       truckIsMoving();
-        }
-    }
+public abstract class Flatbed extends Truck{
+private boolean platformRaised = true;
 
-    @Override
-    public void gas(double amount){
-        if (platformPosition == 1) {
-            if (amount > 0 && amount <= 1){
-                incrementSpeed(amount);
-            }
-            else{
-                System.out.println("Fel gas värde, värdet ska ligga mellan 0 och 1.");
-            }
-        }
+public Flatbed(int nr_doors, Color color, int power, String model, double x, double y){
+    super(nr_doors, color, power, model, x, y);
+}
+
+public void raisePlatform(){
+    platformRaised = true;
+}   
+
+public void lowerPlatform(){
+    if(getCurrentSpeed() == 0){
+        platformRaised = false;
     }
+    else{
+        System.out.println("Cannot lower ramp when moving.");
+    }
+}
+
+public boolean isPlatformRaised(){
+    return platformRaised;
+}
+
+protected boolean isMovable(){
+    return platformRaised;
+}
+
 
 }

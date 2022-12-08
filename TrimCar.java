@@ -12,4 +12,8 @@ public abstract class TrimCar extends Car{
     protected double speedFactor(){
         return getEnginePower() * 0.01 * trimFactor;
     }
+
+    protected boolean isMovable(){
+        return true;
+    }
 }
