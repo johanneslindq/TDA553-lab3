@@ -11,13 +11,13 @@ public abstract class Vehicle extends Movable{
     private CarLoader carLoader;
 
     public Vehicle(int nr_doors, Color car_color, int power, String model, double xPos, double yPos){
-    super(xPos, yPos);
-    this.nrDoors = nr_doors;
-    this.color = car_color;
-    this.enginePower = power;
-    this.modelName = model;
-    this.isLoaded = false;
-    stopEngine();
+        super(xPos, yPos);
+        this.nrDoors = nr_doors;
+        this.color = car_color;
+        this.enginePower = power;
+        this.modelName = model;
+        this.isLoaded = false;
+        stopEngine();
     }
     
 
@@ -47,7 +47,6 @@ public abstract class Vehicle extends Movable{
     
     public void gas(double amount){
         if (isMovable()){
-    
             if (amount > 0 && amount <= 1){
                 incrementSpeed(amount);
             }
@@ -75,11 +74,7 @@ public abstract class Vehicle extends Movable{
         setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount,0));
     }
     
-    protected abstract double speedFactor();
-    protected abstract boolean isMovable();
-    
-    
-    
+    protected abstract double speedFactor();    
     
     public int getNrDoors(){
         return nrDoors;

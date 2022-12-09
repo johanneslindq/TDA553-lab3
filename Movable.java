@@ -8,6 +8,8 @@ public abstract class Movable extends Positionable{
         this.direction = 0;
     }
 
+    protected abstract boolean isMovable();
+
     public void move(){
         switch (direction){
             case 0: 
