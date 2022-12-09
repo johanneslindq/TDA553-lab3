@@ -4,19 +4,28 @@ import org.junit.Test;
 public class ScaniaTest {
 
     @Test
-    public void raiseWhenMoving() {
+    public void lowerRamp(){
         Scania truck = new Scania();
-        truck.gas(1);
-        truck.raisePlatform(10);
-        assertTrue(truck.getPlatformAngle() == 0);
+        truck.adjustPlatform(-10);
+        int newValue = truck.getPlatformAngle();
+        assertEquals(0, newValue);
     }
 
     @Test
-    public void gasWhenRaised() {
+    public void raiseRamp(){
         Scania truck = new Scania();
-        truck.raisePlatform(10);
+        truck.adjustPlatform(30);
+        int newValue = truck.getPlatformAngle();
+        assertEquals(30, newValue);
+    }
+
+    @Test
+    public void moveWhenDown(){
+        Scania truck = new Scania();
         truck.gas(1);
-        assertTrue(truck.getCurrentSpeed() == 0);
+        double newValue = truck.getCurrentSpeed();
+        double expectedValue = truck.getEnginePower() * 0.01 * 1;
+        assertTrue(expectedValue == newValue);
     }
 
 

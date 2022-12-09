@@ -1,29 +1,22 @@
 import java.awt.*;
 public abstract class Dumptruck extends Truck{
-    private double platformAngle = 0; 
+    private DumpRamp ramp;
+
 
     public Dumptruck(int nr_doors, Color color, int power, String model, double x, double y){
         super(nr_doors, color, power, model, x, y);
+        this.ramp = new DumpRamp(this, 70);
     }
 
-    public void raisePlatform(double amount){
-        if(amount <= 70 && amount >=0 && getCurrentSpeed() == 0){
-            platformAngle = Math.min (platformAngle + amount, 70);
-        }
+    public int getPlatformAngle(){
+        return ramp.getPlatformAngle();
     }
-
-    public void lowerPlatform(double amount){
-        if(amount <= 70 && amount >= 0){
-            platformAngle = Math.max(platformAngle + amount, 0);
-        }
-    }
-
-    public double getPlatformAngle(){
-        return platformAngle;
+    public void adjustPlatform(int amount){
+        ramp.adjustPlatform(amount);
     }
 
     protected boolean isMovable(){
-        return platformAngle == 0;
+        return ramp.getPlatformAngle() == 0;
     }
 
     
