@@ -1,5 +1,5 @@
 import java.awt.*;
-public abstract class Truck extends Car {
+public abstract class Truck extends Vehicle {
 
 
     public Truck(int nr_doors, Color color, int power, String model, double x, double y){

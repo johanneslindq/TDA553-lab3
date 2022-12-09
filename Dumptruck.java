@@ -11,6 +11,7 @@ public abstract class Dumptruck extends Truck{
     public int getPlatformAngle(){
         return ramp.getPlatformAngle();
     }
+    
     public void adjustPlatform(int amount){
         ramp.adjustPlatform(amount);
     }
