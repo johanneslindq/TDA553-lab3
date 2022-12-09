@@ -8,7 +8,7 @@ public abstract class Vehicle extends Movable{
     private Color color; // Color of the car
     private final String modelName; // The car model name
     private boolean isLoaded;
-    private CarTransporter transporter;
+    private CarLoader carLoader;
 
     public Vehicle(int nr_doors, Color car_color, int power, String model, double xPos, double yPos){
     super(xPos, yPos);
@@ -21,19 +21,19 @@ public abstract class Vehicle extends Movable{
     }
     
 
-    public void setVehicleLoaded(CarTransporter truckToLoadOn){
+    public void setVehicleLoaded(CarLoader carLoader){
         if (!isLoaded){
             isLoaded = true;
-            transporter = truckToLoadOn;
+            this.carLoader = carLoader;
         }
     }
 
-    public void setVehicleUnloaded(){
+    public void setVehicleUnloaded(Positionable carLoaderOwner){
         if (isLoaded){
             isLoaded = false;
-            setX(transporter.getX() - 10);
-            setY(transporter.getY() - 10);
-            transporter = null;
+            setX(carLoaderOwner.getX() - 10);
+            setY(carLoaderOwner.getY() - 10);
+            carLoader = null;
         }
     }
 
