@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.lang.Math;
 
 
-    public class CarTransporter extends Truck{
+    public class CarTransporter extends Truck implements CarLoader{
     private int carCapacity;
     private ArrayList<Car> loadedCars;
     private FlatRamp ramp;
@@ -32,15 +32,15 @@ import java.lang.Math;
     }
 
     public void loadCar(Car car){
-        if(loadedCars.size() < carCapacity && Math.abs(this.getX() - car.getX()) <= 10 && Math.abs(this.getY() - car.getY()) <= 10 && ramp.isPlatformRaised())  {
-            car.setCarLoaded(this);
+        if(loadedCars.size() < carCapacity && Math.abs(this.getX() - car.getX()) <= 10 && Math.abs(this.getY() - car.getY()) <= 10 && !ramp.isPlatformRaised())  {
+            car.setVehicleLoaded(this);
             loadedCars.add(car);
         }
     }
 
     public void unloadCar(Car car){
-        if (ramp.isPlatformRaised()){
-        car.setCarUnloaded();
+        if (!ramp.isPlatformRaised()){
+        car.setVehicleUnloaded();
         loadedCars.remove(car);
     }
     }

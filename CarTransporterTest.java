@@ -29,5 +29,34 @@ public class CarTransporterTest {
         assertTrue(expectedValue == newValue);
     }
 
+    @Test
+    public void loadTest(){
+        CarTransporter truck = new CarTransporter(10);
+        Volvo240 car = new Volvo240();
+
+        truck.adjustPlatform();
+        truck.loadCar(car);
+        truck.adjustPlatform();
+
+        for (int i = 1 ; i<10 ; i++){
+        truck.gas(1);
+        }
+
+        for (int i = 1 ; i<10 ; i++){
+            truck.move();
+        }
+
+        for (int i = 1 ; i<30 ; i++){
+            truck.brake(1);
+        }
+
+        truck.adjustPlatform();
+        truck.unloadCar(car);
+        truck.adjustPlatform();
+
+        assertEquals(truck.getX() - 10, car.getX() , 0.001);
+        assertEquals(truck.getY() - 10, car.getY(),  0.001);
+    }
+
 
 }
