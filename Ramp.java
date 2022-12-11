@@ -4,7 +4,7 @@ public abstract class Ramp {
     public Ramp(Truck owner){
         this.owner = owner;
     }
-    
+
     public boolean isAdjustable(){
         return owner.getCurrentSpeed() == 0;
     }

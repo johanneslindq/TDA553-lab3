@@ -1,18 +1,27 @@
 
-public class RepairShop extends Positionable{
-    private CarLoader carLoader;
+public class RepairShop implements CarLoader{
+    private CarStorage carStorage;
+    private Position position;
 
     public RepairShop(double x, double y, int carCapacity){
-        super(x, y);
-        this.carLoader = new CarLoader(this, carCapacity);
+        this.position = new Position(x, y);
+        this.carStorage = new CarStorage(this, carCapacity);
     }
 
     public void loadCar(Car car){
-        carLoader.loadCar(car);
+        carStorage.loadCar(car);
     }
 
+    public double getX(){
+        return position.getX();
+    }
+
+    public double getY(){
+        return position.getY();
+    }
+    
     public void unloadCar(Car car){
-        carLoader.unloadCar(car);
+        carStorage.unloadCar(car);
     }
 
 }

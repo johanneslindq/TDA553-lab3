@@ -1,6 +1,6 @@
 public class DumpRamp extends Ramp{
     private int platformAngle = 0;
-    private int maxAngle;
+    private final int maxAngle;
 
 
     public DumpRamp(Truck owner, int maxAngle){

@@ -1,8 +1,8 @@
-public abstract class Positionable {
+public class Position {
     private double xPos; // x coordinate
     private double yPos; // y  coordinate
 
-    public Positionable(double x, double y){
+    public Position(double x, double y){
         this.xPos = x;
         this.yPos = y;
     }
@@ -15,12 +15,11 @@ public abstract class Positionable {
         return yPos;
     }
 
-    protected void setX(double newX){
+    public void setX(double newX){
         xPos = newX;
     }
 
-    protected void setY(double newY){
+    public void setY(double newY){
         yPos = newY;
     }
 }
-
