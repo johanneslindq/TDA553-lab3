@@ -1,7 +1,7 @@
 
 import java.awt.*;
 
-public abstract class Vehicle{
+public abstract class Vehicle implements Movable{
 
     private final int nrDoors; // Number of doors on the car
     private final double enginePower; // Engine power of the car
@@ -23,14 +23,14 @@ public abstract class Vehicle{
     
 
     /* Methods to load and unload the vehicle. When unloaded, the vehicle is placed some distance away from it's "carrier". */
-    public void setVehicleLoaded(CarStorage carStorage){
-        if (!isLoaded){
+    protected void setVehicleLoaded(CarStorage carStorage){
+        if (!isLoaded && carStorage.getLatestCar() == this && vector.isNear(carStorage.getOwner())){
             isLoaded = true;
             this.carStorage = carStorage;
         }
     }
 
-    public void setVehicleUnloaded(CarLoader carStorageOwner){
+    protected void setVehicleUnloaded(CarLoader carStorageOwner){
         if (isLoaded){
             isLoaded = false;
             vector.setX(carStorageOwner.getX() - 10);
@@ -72,11 +72,11 @@ public abstract class Vehicle{
 
     /* Methods to increase or decrease the speed, has sanity checks to make sure it doesn't go above it's limits. */
 
-    protected void incrementSpeed(double amount){
+    private void incrementSpeed(double amount){
         vector.setCurrentSpeed(Math.min(vector.getCurrentSpeed() + speedFactor() * amount, enginePower));
     }
     
-    protected void decrementSpeed(double amount){
+    private void decrementSpeed(double amount){
         vector.setCurrentSpeed(Math.max(vector.getCurrentSpeed() - speedFactor() * amount,0));
     }
     
@@ -102,7 +102,7 @@ public abstract class Vehicle{
         return vector.getCurrentSpeed();
     }
 
-    public double getDirection(){
+    public int getDirection(){
         return vector.getDirection();
     }
 
@@ -116,6 +116,10 @@ public abstract class Vehicle{
 
     public void move(){
         vector.move();
+    }
+
+    public boolean isCarLoaded(){
+        return isLoaded;
     }
     
     public void setColor(Color clr){
