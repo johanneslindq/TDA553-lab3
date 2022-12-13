@@ -22,4 +22,8 @@ public class Position {
     public void setY(double newY){
         yPos = newY;
     }
+
+    public boolean isNear(Positionable object){
+        return Math.abs(object.getX() - this.xPos) <= 10 && Math.abs(object.getY() - this.yPos) <= 10;
+    }
 }

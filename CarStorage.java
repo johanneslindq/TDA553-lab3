@@ -19,15 +19,31 @@ public class CarStorage {
     }
 
     protected void loadCar(Car car){
-        if(loadedCars.size() < carCapacity && Math.abs(owner.getX() - car.getX()) <= 10 && Math.abs(owner.getY() - car.getY()) <= 10)  {
-            car.setVehicleLoaded(this);
+        if(loadedCars.size() < carCapacity && Math.abs(owner.getX() - car.getX()) <= 10 && Math.abs(owner.getY() - car.getY()) <= 10 && !car.isCarLoaded())  {
             loadedCars.add(car);
+            car.setVehicleLoaded(this);
         }
     }
 
     protected void unloadCar(Car car){
+    if(isCarInStorage(car)){
         car.setVehicleUnloaded(owner);
         loadedCars.remove(car);
     }
+    }
+
+    public Car getLatestCar(){
+        return loadedCars.get(loadedCars.size() - 1);
+    }
+
+    public boolean isCarInStorage(Car car){
+        return loadedCars.contains(car);
+    }
+
+    public CarLoader getOwner(){
+        return owner;
+    }
+
+
 
 }
