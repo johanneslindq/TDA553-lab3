@@ -1,0 +1,14 @@
+public class PaintableVehicle extends JComponent {
+    private final Image image;
+    private final Vehicle car;
+
+    public PaintableVehicle(Image image, Vehicle car) {
+        this.image = image;
+        this.car = car;
+    }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(this.image, car.getX(), car.getY(), null); // see javadoc for more info on the parameters
+    }
+}
