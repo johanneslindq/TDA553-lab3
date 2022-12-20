@@ -1,0 +1,12 @@
+﻿Reflection
+
+
+
+
+1. When gas() is called the method promises that the vehicle will speed up if it's movable, it’s the contract of gas(). Gas() also uses increamentSpeed() to stop the user from accelerating above the vehicles “max speed”. Break() uses the built in function Math.max() as it’s contract. It promises that you no matter how many times you call break() the currentSpeed won’t go below 0. Since both Scania and the Car (which includes Volvo) uses the same gas() and break() method they both have the same contracts. The program does follow the Liskov substitution principle as you can freely switch out the superclass to any subclass and it will work. 
+
+
+2. To minimize the amount of duplicated code we used a Ramp class that had FlatRamp and DumpRamp as subtypes, since this allowed for extensions of more Ramp subtypes in the future. Since the ramps functioned in such a different manner, we decided it was best to give them their own type since it would be difficult and messy to force them into one method. We also added an isAdjustable() in Ramp since both ramps (and we assumed all ramps in the future) won’t be able to be lowered if the vehicle is moving. This method checks if the vehicle is moving by checking currentSpeed() which is an attribute in the superclass Vehicle, meaning all vehicles will have this attribute. Since a repairshop functions similarly to car transporter in the sense that they can only “load” cars if they are nearby they both contain a "CarStorage" that handles everything related to loading cars. We used alot of subclasses to allow OCP in the sense that it’s easy to expand and add more types without jeaprodizing the existing classes. Delegation was mainly used in CarTransport and RepairShop since they require that we send instance objects to them to “load” in their respective way. 
+
+
+3. Yes, we moved all the fundamental attributes from Car to a new class Vehicle since we now had more vehicle types than just Car. This follows OCP since now we can add more vehicle types (like motorcycles etc) without modifying the Car and Truck classes. In lab 1 we could have thought further ahead that we might want more vehicle types and not settled for just Car, like how we originally had turbo and trim in the Car class but then made them their own class. We also moved the x and y to Position and Vector that handle position and moving, as to reduce code redundancy.
