@@ -1,4 +1,4 @@
-
+package lab3.model;
 import java.awt.*;
 
 public abstract class TurboCar extends Car{
