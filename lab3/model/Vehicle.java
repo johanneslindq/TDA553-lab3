@@ -39,6 +39,10 @@ public abstract class Vehicle implements Movable{
         }
     }
 
+    public CarStorage get_current_storage(){
+        return carStorage;
+    }
+
     public void startEngine(){
         vector.setCurrentSpeed(0.1);
     }

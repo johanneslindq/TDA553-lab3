@@ -7,8 +7,8 @@ public class CarTransporter extends Truck implements CarLoader{
     private CarStorage carStorage;
     private FlatRamp ramp;
 
-    public CarTransporter(int maxCars){
-        super(2, Color.GRAY, 100, "Car Transporter", 0, 0);
+    public CarTransporter(int maxCars, double x, double y){
+        super(2, Color.GRAY, 100, "Car Transporter", x, y);
         this.carStorage = new CarStorage(this, 10);
         this.ramp = new FlatRamp(this);
         };
